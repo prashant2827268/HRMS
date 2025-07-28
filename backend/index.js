@@ -25,14 +25,13 @@ const app = express();
 const corsOptions = {
   origin: ["http://localhost:5173", "http://localhost:5174"],
   credentials: true,
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
 };
 // Middlewares
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -42,12 +41,12 @@ app.use("/api/attendance", attendanceRoutes);
 app.use("/api/leaves", leaveRoutes);
 app.use("/api", miscRoutes);
 
-if(process.env.NODE_ENV ==="production"){
-  app.use(express.static(path.join(__dirname,'../../frontend/dist')))
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
-  app.get("*",(req,res) => {
-    res.sendFile(path.join(__dirname, "../../frontend","dist","index.html"));
-  })
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../frontend", "dist", "index.html"));
+  });
 }
 
 // Connect to DB and start server

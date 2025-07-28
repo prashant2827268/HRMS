@@ -5,9 +5,9 @@ import {
   updateCandidate,
   deleteCandidate,
   moveToEmployee,
-} from "../controllers/candidateController.js";
-import { authenticateToken } from "../middlewares/auth.js";
-import upload from "../middlewares/upload.js";
+} from "../../controllers/candidateController.js";
+import { authenticateToken } from "../../middlewares/auth.js";
+import upload from "../../middlewares/upload.js";
 
 const router = express.Router();
 

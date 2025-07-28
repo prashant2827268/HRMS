@@ -4,8 +4,8 @@ import {
   getAttendance,
   getActiveEmployees,
   updateAttendance,
-} from "../controllers/attendanceController.js";
-import { authenticateToken } from "../middlewares/auth.js";
+} from "../../controllers/attendanceController.js";
+import { authenticateToken } from "../../middlewares/auth.js";
 
 const router = express.Router();
 

@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-
 import Candidate from "../models/Candidate.js";
 import Employee from "../models/Employee.js";
 import Leave from "../models/Leave.js";

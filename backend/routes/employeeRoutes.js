@@ -4,8 +4,8 @@ import {
   getAllEmployees,
   updateEmployee,
   deleteEmployee,
-} from "../controllers/employeeController.js";
-import { authenticateToken } from "../middlewares/auth.js";
+} from "../../controllers/employeeController.js";
+import { authenticateToken } from "../../middlewares/auth.js";
 
 const router = express.Router();
 
