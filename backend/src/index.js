@@ -41,8 +41,9 @@ app.use("/api/employees", employeeRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/leaves", leaveRoutes);
 app.use("/api", miscRoutes);
+
 if(process.env.NODE_ENV ==="production"){
-  app.use(express.static(path.join(__dirname,'../frontend/dist')))
+  app.use(express.static(path.join(__dirname,'../../frontend/dist')))
 
   app.get("*",(req,res) => {
     res.sendFile(path.join(__dirname, "../../frontend","dist","index.html"));
