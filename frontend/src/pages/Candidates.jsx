@@ -70,7 +70,6 @@ function Candidates() {
 
     try {
       await candidateAPI.update(candidate.id, { status: newStatus });
-      console.log("-candidate", candidate);
 
       if (newStatus === "Selected") {
         const response = await candidateAPI.moveToEmployee(
@@ -94,7 +93,6 @@ function Candidates() {
   };
 
   const handleDropdownAction = async (action, candidateId) => {
-    console.log(`${action} for candidate ID: ${candidateId}`);
     setOpenDropdownId(null);
 
     if (action === "Delete Candidate") {
@@ -196,7 +194,6 @@ function Candidates() {
       if (newCandidate.resume) {
         formData.append("resume", newCandidate.resume);
       }
-      console.log("formdata", formData);
       await candidateAPI.create(formData);
       fetchCandidates();
       closeModal();
@@ -322,22 +319,7 @@ function Candidates() {
                 <td className={styles.position}>{candidate.position}</td>
                 <td className={styles.experience}>{candidate.experience}</td>
                 <td className={styles.statuscell}>
-                  {/* <select
-                    className={`${styles.statusselect} ${
-                      styles[candidate.status.toLowerCase()]
-                    }`}
-                    value={candidate.status}
-                    onChange={(e) => {
-                      handleCandidateToEmployee(e, candidate);
-                      console.log("Status changed to:", e.target.value);
-                    }}
-                  >
-                    {statuses.map((status) => (
-                      <option key={status} value={status}>
-                        {status}
-                      </option>
-                    ))}
-                  </select> */}
+               
                   <CustomDropdown
                     statuses={statuses}
                     selected={statusFilter}

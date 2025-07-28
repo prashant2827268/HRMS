@@ -19,7 +19,6 @@ export const AuthProvider = ({ children }) => {
         setUser(parsedUser);
         setAuthToken(token);
 
-        console.log("token", token);
         const tokenExpiry = JSON.parse(atob(token.split(".")[1])).exp * 1000;
 
         const currentTime = Date.now();

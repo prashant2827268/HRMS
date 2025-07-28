@@ -115,7 +115,6 @@ function Leaves() {
   };
 
   const handleDropdownAction = (action, leaveId) => {
-    console.log(`${action} for leave ID: ${leaveId}`);
     setOpenDropdownId(null);
   };
 

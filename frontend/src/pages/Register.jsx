@@ -52,14 +52,12 @@ const Register = () => {
 
     setLoading(true);
     try {
-      // Call the register API
-      console.log()
+      
       const response = await authAPI.register({
         username: formData.fullName,
         email: formData.email,
         password: formData.password,
       });
-       console.log("register response",response)
       handleLogin(response.data.token, response.data.user);
 
       navigate("/candidates");

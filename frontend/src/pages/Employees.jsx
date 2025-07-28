@@ -41,7 +41,6 @@ function Employees() {
   };
 
   const openEditModal = (employee) => {
-    console.log("employee",employee);
     setCurrentEmployee(employee);
     setIsEditModalOpen(true); // Open modal with employee details
   };
@@ -53,7 +52,6 @@ function Employees() {
 
   const handleEditInputChange = (e) => {
     const { name, value } = e.target;
-    console.log("name, value",name,value);
     setCurrentEmployee((prev) => ({
       ...prev,
       [name]: value,
@@ -63,7 +61,6 @@ function Employees() {
   const handleUpdateEmployeeSubmit = async (e) => {
     e.preventDefault();
     if (currentEmployee && currentEmployee.id) {
-      console.log("currentEmployee",currentEmployee)
       try {
         await employeeAPI.update(currentEmployee.id, currentEmployee);
         fetchEmployees();
@@ -97,7 +94,6 @@ function Employees() {
 
 
   const handleDropdownAction = async (action, employeeId) => {
-    console.log(`${action} for employee ID: ${employeeId}`);
     setOpenDropdownId(null); // Close dropdown after action
     
     if (action === "Edit Employee") {

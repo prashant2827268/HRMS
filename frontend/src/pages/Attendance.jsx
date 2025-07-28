@@ -43,7 +43,6 @@ function Attendance() {
   };
 
   const handleDropdownAction = (action, attendanceId) => {
-    console.log(`${action} for attendance ID: ${attendanceId}`);
     setOpenDropdownId(null);
   };
 
