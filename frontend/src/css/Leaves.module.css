@@ -8,10 +8,13 @@
   overflow: hidden;
   box-sizing: border-box;
 }
+
 .downloadLink {
   color: #007bff;
   text-decoration: underline;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
 .downloadLink:hover {
@@ -36,6 +39,7 @@
     height: auto;
   }
 }
+
 .dropdownContainer {
   position: relative;
 }
@@ -80,7 +84,6 @@
 .dropdownItem:hover {
   background-color: #f0f0f0;
 }
-
 
 @media (max-width: 600px) {
   .leavesContent {
@@ -192,12 +195,90 @@
   vertical-align: middle;
 }
 
+.leaveRow {
+  transition: background-color 0.2s ease;
+}
+
 .leaveRow:hover {
   background-color: #f9fafb;
 }
 
-.appliedLeavesTable tbody tr:last-child td {
+.appliedLeavesTable tbody tr:last-child .leaveRow td {
   border-bottom: none;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  .appliedLeavesTable {
+    display: block;
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+  }
+
+  .appliedLeavesTable thead {
+    display: none; /* Hide header on small screens */
+  }
+
+  .leaveRow {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .leaveRow td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border: none;
+    width: 100%;
+  }
+
+  .leaveRow td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #374151;
+    margin-right: 10px;
+    min-width: 100px;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+
+  .leaveRow td:nth-child(1)::before { content: "Profile"; }
+  .leaveRow td:nth-child(2)::before { content: "Name"; }
+  .leaveRow td:nth-child(3)::before { content: "Date"; }
+  .leaveRow td:nth-child(4)::before { content: "Reason"; }
+  .leaveRow td:nth-child(5)::before { content: "Status"; }
+  .leaveRow td:nth-child(6)::before { content: "Docs"; }
+
+  .leaveRow:hover {
+    background-color: #f9fafb;
+  }
+
+  .leaveAvatar {
+    width: 24px;
+    height: 24px;
+  }
+
+  .employeeInfo {
+    flex-direction: row;
+    gap: 8px;
+   
+  }
+
+  .employeeName, .employeePosition {
+    font-size: 12px;
+  }
+
+  .leaveReason {
+    max-width: 100%;
+  }
+
+  .statusCell, .docsCell {
+    text-align: right;
+  }
 }
 
 /* Table cell specific styling */
@@ -768,7 +849,6 @@
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  
   .leavesContainer {
     padding: 12px;
   }
@@ -870,4 +950,10 @@
     padding: 16px;
     gap: 10px;
   }
+}
+
+.fileName {
+  margin-left: 10px;
+  color: #374151;
+  font-size: 12px;
 }

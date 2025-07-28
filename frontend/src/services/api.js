@@ -2,6 +2,7 @@ import axios from "axios";
 
 // --- BASE URL ---
 const API_URL = "http://localhost:5001/api";
+const BASE_URL = "http://localhost:5001"
 
 // --- IN-MEMORY TOKEN (sync with AuthContext) ---
 let authToken = localStorage.getItem("token");
@@ -98,9 +99,16 @@ export const leaveAPI = {
   getApproved: () => api.get("/leaves/approved"),
 };
 
+
+ function getFilenameFromPath(path) {
+   // Handles both Windows (\) and Unix (/) style paths
+   return path.split(/[/\\]/).pop();
+ }
 // --- DOWNLOAD FILE ---
 export const downloadFile = (filename) => {
-  window.open(`${API_URL}/uploads/${filename}`, "_blank");
+  const originalFileName = getFilenameFromPath(filename);
+  window.open(`${BASE_URL}/uploads/${originalFileName}`, "_blank");
+
 };
 
 export default api;

@@ -22,10 +22,9 @@ import { leaveAPI } from "../services/api";
 import styles from "../css/Leaves.module.css";
 import { employeeAPI } from "../services/api";
 import { toast } from "react-toastify";
-
+import { downloadFile } from "../services/api";
 
 const statuses = ["Pending", "Approved", "Rejected"];
-const BASE_URL = "http://localhost:5001";
 
 function Leaves() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -358,19 +357,13 @@ function Leaves() {
                     </td>
                     <td className={styles.docsCell}>
                       {leave.docs ? (
-                        <a
-                          href={
-                            leave.docs.startsWith("http")
-                              ? leave.docs
-                              : `${BASE_URL}/${leave.docs}`
-                          }
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          download
+                       
+                        <button
+                          onClick={() => downloadFile(leave.docs)}
                           className={styles.downloadLink}
                         >
                           Download 📄
-                        </a>
+                        </button>
                       ) : (
                         <span>No File</span>
                       )}
@@ -388,10 +381,9 @@ function Leaves() {
             <h3 className={styles.sectionTitle}>Leave Calendar</h3>
             <div className={styles.calendarActions}>
               <div className={styles.searchContainer}>
-                <FiSearch className={styles.searchIcon} />
                 <input
                   type="text"
-                  placeholder="Q Search"
+                  placeholder="Search"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className={styles.searchInput}
