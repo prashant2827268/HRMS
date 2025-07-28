@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Global scrollbar hiding */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+:root {
+  --main-font: "Roboto", sans-serif;
+}
+
+body {
+  font-family: var(--main-font); 
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+

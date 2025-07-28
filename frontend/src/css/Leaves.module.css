@@ -1,0 +1,873 @@
+.leavesContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  flex: 1;
+  background-color: #f3f4f6;
+  height: calc(100vh - 64px);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.downloadLink {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.downloadLink:hover {
+  color: #0056b3;
+}
+
+.leavesContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  height: 100%;
+  min-height: 0;
+}
+
+@media (max-width: 900px) {
+  .leavesContent {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .leavesContainer {
+    padding: 8px;
+    height: auto;
+  }
+}
+.dropdownContainer {
+  position: relative;
+}
+
+.dropdownInput {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  background: white;
+}
+
+.dropdownInput input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.dropdownList {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 160px;
+  overflow-y: auto;
+  margin-top: 4px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdownItem {
+  padding: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdownItem:hover {
+  background-color: #f0f0f0;
+}
+
+
+@media (max-width: 600px) {
+  .leavesContent {
+    gap: 6px;
+  }
+  .appliedLeavesSection,
+  .leaveCalendarSection {
+    padding: 8px;
+    border-radius: 10px;
+  }
+  .leavesContainer {
+    padding: 2px;
+    height: auto;
+  }
+}
+
+/* Applied Leaves Section */
+.appliedLeavesSection {
+  background-color: white;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.filterGroup {
+  position: relative;
+}
+
+.filterSelect {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 40px;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  color: #374151;
+  min-width: 100px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 6px center;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  padding-right: 24px;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.appliedLeavesTableContainer {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.appliedLeavesTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  flex: 1;
+}
+
+.appliedLeavesTable thead {
+  background-color: #4D007D;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.appliedLeavesTable th {
+  text-align: left;
+  padding: 8px 10px;
+  font-weight: 600;
+  color: white;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.appliedLeavesTable td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+  vertical-align: middle;
+}
+
+.leaveRow:hover {
+  background-color: #f9fafb;
+}
+
+.appliedLeavesTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Table cell specific styling */
+.leaveAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.employeeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.employeeName {
+  font-weight: 500;
+  color: #111827;
+  font-size: 12px;
+}
+
+.employeePosition {
+  color: #6b7280;
+  font-size: 10px;
+}
+
+.leaveDate {
+  color: #374151;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.leaveReason {
+  color: #6b7280;
+  max-width: 120px;
+  word-wrap: break-word;
+  font-size: 11px;
+}
+
+/* Status styling */
+.statusCell {
+  position: relative;
+}
+
+.statusContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.statusBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  font-size: 10px;
+  border-radius: 50px;
+  border: 1px solid #6f6f6f;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  min-width: 60px;
+  justify-content: center;
+}
+
+.statusBtn.approved {
+  color: #059669;
+}
+
+.statusBtn.pending {
+  color: #d97706;
+}
+
+.statusBtn.rejected {
+  color: #dc2626;
+}
+
+.statusBtn:hover {
+  background-color: #f3f4f6;
+}
+
+.statusArrow {
+  transition: transform 0.2s ease;
+  width: 10px;
+  height: 10px;
+}
+
+.statusContainer:hover .statusArrow {
+  transform: rotate(180deg);
+}
+
+.statusDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 2px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  z-index: 20;
+  overflow: hidden;
+  min-width: 80px;
+}
+
+.statusOption {
+  width: 100%;
+  padding: 6px 8px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.statusOption:last-child {
+  border-bottom: none;
+}
+
+.statusOption:hover {
+  background-color: #f3f4f6;
+}
+
+.statusOption.approved {
+  color: #059669;
+}
+
+.statusOption.pending {
+  color: #d97706;
+}
+
+.statusOption.rejected {
+  color: #dc2626;
+}
+
+.docsCell {
+  text-align: center;
+}
+
+.docsIcon {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Leave Calendar Section */
+.leaveCalendarSection {
+  background-color: white;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.calendarActions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.searchIcon {
+  color: #9ca3af;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.searchInput {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 40px;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  color: #374151;
+  min-width: 120px;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.searchInput::placeholder {
+  color: #9ca3af;
+}
+
+.addLeaveBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: #4D007D;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.addLeaveBtn:hover {
+  background-color: #3d005f;
+}
+
+.calendarContainer {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.calendarNavigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.navBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: #6b7280;
+  transition: all 0.2s ease;
+}
+
+.navBtn:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.currentMonth {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.customCalendar {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.calendarHeader {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.dayHeader {
+  padding: 8px 4px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  flex: 1;
+  min-height: 0;
+}
+
+.calendarDay {
+  position: relative;
+  padding: 6px 4px;
+  text-align: center;
+  cursor: pointer;
+  border-right: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.calendarDay:nth-child(7n) {
+  border-right: none;
+}
+
+.calendarDay:hover {
+  background-color: #f9fafb;
+}
+
+.hasEvent {
+  background-color: #f3e8ff;
+  border: 2px solid #4D007D;
+}
+
+.dayNumber {
+  font-size: 11px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 2px;
+}
+
+.eventIndicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background-color: #4D007D;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eventCount {
+  font-size: 8px;
+  color: white;
+  font-weight: 600;
+}
+
+/* Approved Leaves Section */
+.approvedLeavesSection {
+  margin-top: 12px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 120px;
+  overflow: hidden;
+}
+
+.approvedLeavesTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 8px 0;
+}
+
+.approvedLeavesList {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.approvedLeaveItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  margin-bottom: 6px;
+}
+
+.approvedLeaveAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.approvedLeaveInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.approvedLeaveName {
+  font-size: 12px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.approvedLeavePosition {
+  font-size: 10px;
+  color: #6b7280;
+}
+
+.approvedLeaveDate {
+  font-size: 10px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Add New Leave Modal */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 16px;
+}
+
+.addLeaveModal {
+  background: white;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #4D007D;
+  color: white;
+  padding: 16px 20px;
+  border-radius: 12px 12px 0 0;
+}
+
+.modalHeader h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.closeBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.modalForm {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup.fullWidth {
+  grid-column: span 2;
+}
+
+.inputGroup label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  background-color: white;
+  color: #374151;
+  transition: border-color 0.2s ease;
+}
+
+.inputGroup input:focus,
+.inputGroup textarea:focus {
+  outline: none;
+  border-color: #4D007D;
+  box-shadow: 0 0 0 3px rgba(77, 0, 125, 0.1);
+}
+
+.inputGroup input:hover,
+.inputGroup textarea:hover {
+  border-color: #4D007D;
+}
+
+.searchInputContainer,
+.dateInputContainer,
+.uploadInputContainer {
+  position: relative;
+}
+
+.inputSearchIcon,
+.calendarIcon,
+.uploadIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.searchInputContainer .inputSearchIcon {
+  left: 12px;
+  right: auto;
+}
+
+.searchInputContainer input {
+  padding-left: 40px;
+}
+
+.formFooter {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.saveBtn {
+  padding: 10px 24px;
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-width: 100px;
+}
+
+.saveBtn:hover {
+  background-color: #4b5563;
+}
+
+.saveBtn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .leavesContent {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .leavesContainer {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .leavesContainer {
+    padding: 8px;
+    height: calc(100vh - 56px);
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .calendarActions {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .searchInput {
+    min-width: 100%;
+  }
+
+  .addLeaveBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .calendarDay {
+    min-height: 35px;
+    padding: 4px 2px;
+  }
+
+  .dayNumber {
+    font-size: 10px;
+  }
+
+  .eventIndicator {
+    width: 10px;
+    height: 10px;
+  }
+
+  .eventCount {
+    font-size: 7px;
+  }
+
+  .modalForm {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .inputGroup.fullWidth {
+    grid-column: span 1;
+  }
+
+  .formFooter {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .leavesContainer {
+    padding: 4px;
+    height: calc(100vh - 48px);
+  }
+
+  .appliedLeavesSection,
+  .leaveCalendarSection {
+    padding: 12px;
+  }
+
+  .calendarDay {
+    min-height: 30px;
+    padding: 2px 1px;
+  }
+
+  .dayNumber {
+    font-size: 9px;
+  }
+
+  .approvedLeaveItem {
+    padding: 6px;
+  }
+
+  .approvedLeaveAvatar {
+    width: 20px;
+    height: 20px;
+  }
+
+  .addLeaveModal {
+    margin: 8px;
+    max-height: calc(100vh - 16px);
+  }
+
+  .modalForm {
+    padding: 16px;
+    gap: 10px;
+  }
+}
